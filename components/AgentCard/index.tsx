@@ -36,9 +36,11 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
     minWidth: (80 / 100) * screenWidth,
-    padding: 20,
-    minHeight: (70 / 100) * screenHeight,
+    padding: 6,
     position: "relative",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
   },
   imagesContainer: {
     position: "relative",

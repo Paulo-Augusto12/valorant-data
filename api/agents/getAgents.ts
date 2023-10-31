@@ -27,7 +27,6 @@ async function makeApiRequest(): Promise <GetAllAgentsDTO> {
 export async function returnAgents(): Promise<ValorantAgentDataModel[]> {
   try {
     const  { data } = await makeApiRequest();
-    console.log(data.map((item) => item ))
     const response =  data.map(
       ({ displayName, uuid, role, fullPortrait, background, backgroundGradientColors }) =>
         new ValorantAgentDataModel(
