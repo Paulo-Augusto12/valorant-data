@@ -9,8 +9,9 @@ export function BottomTabs() {
     <Tabs.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: "#3c096c", height: 70 },
+        tabBarStyle: { backgroundColor: "#0d1821", height: 70 },
       }}
+      initialRouteName="home"
     >
       <Tabs.Screen
         name="home"

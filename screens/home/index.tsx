@@ -39,7 +39,7 @@ function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#3c096c",
+    backgroundColor: "#223843",
     paddingHorizontal: 20,
   },
   listStyle: {
