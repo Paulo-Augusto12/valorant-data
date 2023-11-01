@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
   },
   imagesContainer: {
     position: "relative",
-    top: -120,
+    top: -90,
   },
   agentImage: {
-    height: (60 / 100) * screenHeight,
+    height: (50 / 100) * screenHeight,
   },
   agentDataContainer: {
     justifyContent: 'center',
