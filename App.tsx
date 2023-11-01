@@ -1,22 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 import Home from "./screens/home";
+import { BottomTabs } from "./Router/BottomTabs";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
     <>
-      <View style={styles.container}>
-        <Home />
-      </View>
-      <StatusBar style="light" />
+      <NavigationContainer>
+        <BottomTabs />
+        <StatusBar style="light" />
+      </NavigationContainer>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#3c096c",
-    paddingHorizontal: 20,
-  },
-});

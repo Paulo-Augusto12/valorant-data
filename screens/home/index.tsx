@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <>
-      <View>
+      <View style={styles.container}>
         <FlatList
           data={agents}
           horizontal
@@ -29,6 +29,7 @@ function Home() {
           renderItem={({ item }) => <AgentCard agent={item} />}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
           keyExtractor={(item) => item.id}
+          showsHorizontalScrollIndicator={false}
         />
       </View>
     </>
@@ -36,6 +37,11 @@ function Home() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#3c096c",
+    paddingHorizontal: 20,
+  },
   listStyle: {
     width: "100%",
     height: "100%",
