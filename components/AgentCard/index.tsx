@@ -1,29 +1,46 @@
 import React from "react";
-import { Dimensions, Image, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { ValorantAgentDataModel } from "../../api/agents/getAgents";
 
 interface IAgentCardProps {
-  agent: ValorantAgentDataModel
+  agent: ValorantAgentDataModel;
 }
 
 function AgentCard({ agent }: IAgentCardProps) {
   return (
-    <Pressable style={[styles.container, {backgroundColor: `#${agent.backgroundColor}`}]} onPress={() => console.log(agent)}>
-      <View style={styles.imagesContainer}>
-        <Image
-          style={styles.agentImage}
-          source={{
-            uri: agent.image,
-          }}
-        />
-      </View>
+    <Pressable
+      style={[
+        styles.container,
+        { backgroundColor: `#${agent.backgroundColor}` },
+      ]}
+      onPress={() => console.log(agent)}
+    >
+      <ImageBackground
+        source={{
+          uri: agent.backgroundImage,
+        }}
+        style={styles.agentImage}
+      >
+        <View style={styles.imagesContainer}>
+          <Image
+            style={styles.agentImage}
+            source={{
+              uri: agent.image,
+            }}
+          />
+        </View>
+      </ImageBackground>
       <View style={styles.agentDataContainer}>
-          <Text style={styles.agentName}>
-            {agent.name}
-          </Text>
-          <Text style={styles.agentDescription}>
-            {agent.role}
-          </Text>
+        <Text style={styles.agentName}>{agent.name}</Text>
+        <Text style={styles.agentDescription}>{agent.role}</Text>
       </View>
     </Pressable>
   );
@@ -38,9 +55,9 @@ const styles = StyleSheet.create({
     minWidth: (80 / 100) * screenWidth,
     padding: 6,
     position: "relative",
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between'
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   imagesContainer: {
     position: "relative",
@@ -49,20 +66,23 @@ const styles = StyleSheet.create({
   agentImage: {
     height: (50 / 100) * screenHeight,
   },
+  agentImageBackground: {
+    flex: 1
+  },
   agentDataContainer: {
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center",
   },
   agentName: {
     fontSize: 48,
-    color: '#FFF',
-    fontWeight: 'bold'
+    color: "#FFF",
+    fontWeight: "bold",
   },
   agentDescription: {
     fontSize: 24,
-    color: '#FFF',
-    fontWeight: '500'
-  }
+    color: "#FFF",
+    fontWeight: "500",
+  },
 });
 
 export default React.memo(AgentCard);
