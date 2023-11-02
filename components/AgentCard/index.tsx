@@ -6,22 +6,27 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { ValorantAgentDataModel } from "../../api/agents/getAgents";
+import { useNavigation } from "@react-navigation/native";
 
 interface IAgentCardProps {
   agent: ValorantAgentDataModel;
 }
 
 function AgentCard({ agent }: IAgentCardProps) {
+  const navigation = useNavigation();
   return (
     <Pressable
       style={[
         styles.container,
         { backgroundColor: `#${agent.backgroundColor}` },
       ]}
-      onPress={() => console.log(agent)}
+      onPress={() => {
+        navigation.navigate("data", { agent: agent });
+      }}
     >
       <ImageBackground
         source={{
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
     height: (50 / 100) * screenHeight,
   },
   agentImageBackground: {
-    flex: 1
+    flex: 1,
   },
   agentDataContainer: {
     justifyContent: "center",
