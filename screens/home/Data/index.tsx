@@ -1,9 +1,7 @@
 import React from "react";
 import {
-  StyleSheet,
   Text,
   View,
-  Dimensions,
   ImageBackground,
   Image,
   ScrollView,
@@ -11,6 +9,7 @@ import {
 } from "react-native";
 import { ValorantAgentDataModel } from "../../../api/agents/getAgents";
 import { useData } from "./useData";
+import { styles } from "./style";
 
 function Data({ route, navigation }: any) {
   const { agent }: { agent: ValorantAgentDataModel } = route.params;
@@ -34,17 +33,8 @@ function Data({ route, navigation }: any) {
         <Text style={styles.agentName}>{agent.name}</Text>
         <Text style={styles.agentRole}>{agent.role}</Text>
       </View>
-      <View
-        style={{
-          paddingHorizontal: 10,
-          flexDirection: "column",
-          gap: 16,
-          marginTop: 16,
-        }}
-      >
-        <Text style={{ fontSize: 16, color: "#FFFF", fontWeight: "600" }}>
-          Habilidades
-        </Text>
+      <View style={styles.dataContainer}>
+        <Text style={styles.abilitiesHeader}>Habilidades</Text>
         <View style={styles.abilitiesContainer}>
           {hook.agentData.skills.map(
             ({ name, slot, image, description }, index) => (
@@ -58,15 +48,7 @@ function Data({ route, navigation }: any) {
                   });
                 }}
                 style={[
-                  {
-                    width: 60,
-                    height: 60,
-                    borderRadius: 14,
-                    borderWidth: 2,
-                    borderColor: "#FFFF",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  },
+                  styles.abiityCard,
                   {
                     backgroundColor:
                       hook.selectedSkill.id === index
@@ -80,11 +62,9 @@ function Data({ route, navigation }: any) {
             )
           )}
         </View>
-        <View style={{ flexDirection: "column", gap: 8, paddingBottom: 16 }}>
-          <Text style={{ fontSize: 20, color: "#FFFF", fontWeight: "900" }}>
-            {hook.selectedSkill.name}
-          </Text>
-          <Text style={{ fontWeight: "600", color: "#FFFF" }}>
+        <View style={styles.skillContainer}>
+          <Text style={styles.skillName}>{hook.selectedSkill.name}</Text>
+          <Text style={styles.skillDescription}>
             {hook.selectedSkill.description}
           </Text>
         </View>
@@ -92,44 +72,5 @@ function Data({ route, navigation }: any) {
     </ScrollView>
   );
 }
-
-const height = Dimensions.get("screen").height;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#223843",
-    flexDirection: "column",
-    gap: 16,
-  },
-  agentImagesContainer: {
-    height: (60 / 100) * height,
-    width: "100%",
-    alignItems: "center",
-    borderRadius: 32,
-    padding: 32,
-  },
-  backgroundImage: {
-    width: "100%",
-  },
-  agentImage: {
-    width: "100%",
-    height: "80%",
-  },
-  agentName: {
-    color: "#FFFF",
-    fontSize: 44,
-    fontWeight: "bold",
-  },
-  agentRole: {
-    color: "#FFFF",
-    fontSize: 24,
-    fontWeight: "600",
-  },
-  abilitiesContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-});
 
 export default React.memo(Data);
