@@ -1,58 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, FlatList, StyleSheet, View } from "react-native";
-import {
-  ValorantAgentDataModel,
-  returnAgents,
-} from "../../api/agents/getAgents";
-import AgentCard from "../../components/AgentCard";
+import { createStackNavigator } from "@react-navigation/stack";
+import List from "./List";
 
 function Home() {
-  const [agents, setAgents] = useState<ValorantAgentDataModel[]>([]);
-
-  async function getAgents() {
-    const response = await returnAgents();
-    setAgents(response);
-  }
-
-  useEffect(() => {
-    getAgents();
-  }, []);
-
+  const Stack = createStackNavigator();
   return (
     <>
-      <View style={styles.container}>
-        <FlatList
-          data={agents}
-          horizontal
-          style={styles.listStyle}
-          contentContainerStyle={styles.listContainerStyle}
-          renderItem={({ item }) => <AgentCard agent={item} />}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
-          keyExtractor={(item) => item.id}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="list" component={List} />
+      </Stack.Navigator>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#223843",
-    paddingHorizontal: 20,
-  },
-  listStyle: {
-    width: "100%",
-    height: "100%",
-  },
-  listContainerStyle: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  separator: {
-    padding: 10,
-  },
-});
 
 export default React.memo(Home);
